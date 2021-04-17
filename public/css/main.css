@@ -1,0 +1,11 @@
+
+/*#303030  black
+rgba(33, 33, 33, 0.98); black bar
+#181818 backgroun dark
+*/
+body {
+    background-color: #181818;
+}
+h1, p, li {
+    color: white;
+}
