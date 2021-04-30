@@ -1,4 +1,4 @@
-const { initial } = require("lodash");
+// import { initial } from 'lodash';
 
 function openSideNav() {
     document.getElementById('menuBar').style.width = '160px';

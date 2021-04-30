@@ -1,0 +1,45 @@
+/* pagination */
+a.page-link{
+    background-color: #212529 !important;
+    border-color: #373b3e !important;
+    color: white;
+    font-size: 15px;
+}
+.page-item.active .page-link{
+    /* z-index: 3; */
+    color: #fff;
+    background-color: #0d6efd !important;
+}
+/* .page-item.disabled .page-link{
+    //color: #6c757d;
+    //pointer-events: none;
+    //background-color: #fff;
+} */
+
+
+
+/*
+<ul class="pagination">
+    <li class="page-item disabled">                             //disable class only on this and '>>' (last item)
+        <a class="page-link" href="#" aria-label="Previous">
+            <span aria-hidden="true">«</span>                   //Onli on item show between '>>' and '<<'
+            <span class="sr-only">Previous</span>               //Same as above
+        </a>
+    </li>
+    <li class="page-item active">                               //Active (blue color)
+        <a href="(current)" class="page-link">1<span class="sr-only">(current)</span></a>   //span only apears in current page
+    </li>
+    <li class="page-item">
+        <a href="link to page X" class="page-link">2</a>
+    </li>
+    <li class="page-item">
+        <a href="link to page X" class="page-link">3</a>
+    </li>
+    <li class="page-item">
+        <a href="link to page X" class="page-link">4</a>
+    </li>
+    <li class="page-item">                                      // '>>'  last item (can also disable)
+        <a href="link to next page" class="page-link" rel="next">»</a>
+    </li>
+</ul>
+*/

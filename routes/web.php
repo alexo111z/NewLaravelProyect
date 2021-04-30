@@ -23,4 +23,8 @@ Route::get('/laravel', function() {
 
 Route::prefix('objects')->group(function () {
     Route::get('lista', [objectsController::class, 'index'])->name('objects.list');
+    Route::post('editar', [objectsController::class, 'edit'])->name('objects.edit');
+    Route::post('eliminar', [objectsController::class, 'destroy'])->name('objects.destroy');
+    Route::post('nueva', [objectsController::class, 'store'])->name('objects.new');
+    Route::get('lista/buscar', [objectsController::class, 'show'])->name('objects.search');
 });

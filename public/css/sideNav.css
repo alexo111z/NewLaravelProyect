@@ -21,7 +21,7 @@ a>i {
     height: 100%; /* Full-height: remove this if you want "auto" height */
     width: 0; /* Set the width of the sidebar 0 , 160*/
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-    z-index: 1; /* Stay on top */
+    z-index: 100; /* Stay on top */
     top: 0; /* Stay at the top (margen) */
     left: 0; /* Stay at the left (margen) */
     background-color: #111; /* Black */

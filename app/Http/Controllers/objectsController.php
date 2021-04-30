@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\todo;
 
 class objectsController extends Controller
 {
@@ -13,7 +14,8 @@ class objectsController extends Controller
      */
     public function index()
     {
-        return \view('crud.table');
+        $tareas = todo::orderByDesc('id')->paginate(3);
+        return \view('crud.table', compact('tareas'));
     }
 
     /**
@@ -34,7 +36,13 @@ class objectsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        todo::create([
+            'title' => $data['newTareaTitle'],
+            'description' => $data['newTareaDesc'],
+            'state' => 0,
+        ]);
+        return redirect(route('objects.list'));
     }
 
     /**
@@ -43,9 +51,17 @@ class objectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $word)
     {
-        //
+        $busqueda = $word->validate([
+            'searchWord' => 'required',
+        ]);
+        $tareas = todo::where('title','like', '%'.$busqueda['searchWord'].'%')
+                        ->orWhere('description','like', '%'.$busqueda['searchWord'].'%')
+                        ->orderByDesc('id')->paginate(3);
+        // header('Content-Type: application/json');
+        // echo json_encode($tareas);
+        return \view('crud.table', compact('tareas'));
     }
 
     /**
@@ -54,9 +70,18 @@ class objectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+        $data = $request->all();
+        foreach ($data as $item) {
+            $query = todo::findOrFail($item['id']);
+            $query->title = $item['title'];
+            $query->description = $item['description'];
+            $query->state = $item['status'];
+            $query->save();
+        //    header('Content-Type: application/json');
+        //     echo json_encode($query);
+        }
     }
 
     /**
@@ -77,8 +102,15 @@ class objectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $data = $request->all();
+        $id = [];
+        foreach ($data as $value) {
+            array_push($id, intval($value['id']));
+        }
+        todo::destroy($id);
+        header('Content-Type: application/json');
+            echo json_encode($id);
     }
 }

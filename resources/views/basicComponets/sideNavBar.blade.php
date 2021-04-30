@@ -14,7 +14,7 @@
             <li><a href="">Perfil</a></li>
             <li><a href="{{ url('/') }}">Inicio</a></li>
             <li><a href="">Acerca de...</a></li>
-            <li><a href="{{ route('objects.list') }}">Servicios</a></li>
+            <li><a href="{{ route('objects.list') }}">Lista</a></li>
             <li><a href="">Contacto</a></li>
         </ul>
     </div>
