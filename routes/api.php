@@ -31,6 +31,22 @@ Route::get('list', function () {
 
 Route::post('create', function (Request $request) {
     $data = $request->all();
-    header('Content-Type: application/json');
-    echo json_encode($data);
+        todo::create([
+            'title' => $data['title'],
+            'description' => $data['description'],
+            'state' => 0,
+        ]);
+    // header('Content-Type: application/json');
+    // echo json_encode($data);
+});
+
+Route::delete('delete', function (Request $request) {
+    $data = $request->all();
+    // $id = [];
+    // foreach ($data as $value) {
+    //     array_push($id, intval($value['id']));
+    // }
+    todo::destroy($data);
+    // header('Content-Type: application/json');
+    //     echo json_encode($id);
 });
