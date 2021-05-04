@@ -50,3 +50,18 @@ Route::delete('delete', function (Request $request) {
     // header('Content-Type: application/json');
     //     echo json_encode($id);
 });
+
+Route::post('edit', function (Request $request) {
+    $data = $request->all();
+    foreach ($data as $item) {
+        $query = todo::findOrFail($item['id']);
+        $query->title = $item['title'];
+        $query->description = $item['description'];
+        $query->state = $item['state'];
+        $query->save();
+    }
+
+    // header('Content-Type: application/json');
+    //     echo json_encode(count($data));
+    //     echo json_encode($data);
+});
